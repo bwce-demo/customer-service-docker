@@ -83,11 +83,11 @@
 		</globalVariable>
 		<globalVariable>
 			<name>//CustomerService.module//CLIENT_SERVICE</name>
-			<value>bwce-account-service</value>
+			<value>bw-account-service</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<isOverride>false</isOverride>
+			<isOverride>true</isOverride>
 		</globalVariable>
 	</globalVariables>
 </repository>
