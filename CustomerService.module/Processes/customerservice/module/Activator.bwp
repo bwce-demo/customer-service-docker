@@ -163,6 +163,17 @@
                 </complexContent>
             </complexType>
             <element name="ActivityTimedOutException" type="tns:ActivityTimedOutExceptionType"/>
+            <complexType name="DuplicateKeyExceptionType">
+                <complexContent>
+                    <extension base="tns:ActivityExceptionType">
+                        <sequence>
+                            <element name="duplicateKey" type="string"/>
+                            <element minOccurs="0" name="previousJobID" type="string"/>
+                        </sequence>
+                    </extension>
+                </complexContent>
+            </complexType>
+            <element name="DuplicateKeyException" type="tns:DuplicateKeyExceptionType"/>
         </schema>
         <schema
             targetNamespace="http://www.tibco.com/namespaces/tnt/plugins/jdbc+9f4daaa5-eee4-4b4b-9471-f8d97e4ab791+input"
@@ -1097,8 +1108,6 @@
                                 tibex:constructor="onMessageEnd" tibex:xpdlId="e8edbd4e-1026-4611-b2ce-c333175e3313"/>
                             <bpws:extensionActivity>
                                 <tibex:activityExtension
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/jdbc+9f4daaa5-eee4-4b4b-9471-f8d97e4ab791+input&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;drop_customers-input&quot; match=&quot;/&quot;>&lt;tns:ActivityInputType>&lt;statement>&lt;xsl:value-of select=&quot;&amp;quot;DROP TABLE IF EXISTS public.customers&amp;quot;&quot;/>&lt;/statement>&lt;/tns:ActivityInputType>&lt;/xsl:template>&lt;/xsl:stylesheet>"
-                                    expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"
                                     inputVariable="drop_customers-input"
                                     name="drop_customers"
                                     outputVariable="drop_customers"
@@ -1131,8 +1140,6 @@
                             </bpws:extensionActivity>
                             <bpws:extensionActivity>
                                 <tibex:activityExtension
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/jdbc+4f93e45d-5fb1-4856-98e9-75e8da2fe1be+input&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;create_customers-input&quot; match=&quot;/&quot;>&lt;tns:ActivityInputType>&lt;statement>&lt;xsl:value-of select=&quot;&amp;quot;CREATE TABLE IF NOT EXISTS public.customers(id integer NOT NULL, name text, email text, account_id integer, PRIMARY KEY (id))WITH (OIDS = FALSE)&amp;quot;&quot;/>&lt;/statement>&lt;/tns:ActivityInputType>&lt;/xsl:template>&lt;/xsl:stylesheet>"
-                                    expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"
                                     inputVariable="create_customers-input"
                                     name="create_customers"
                                     outputVariable="create_customers"
@@ -1168,8 +1175,6 @@
                             </bpws:extensionActivity>
                             <bpws:extensionActivity>
                                 <tibex:activityExtension
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/jdbc+003c1024-e2f2-4dcb-bc1f-46526f5d954f+input&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;seed_customers-input&quot; match=&quot;/&quot;>&lt;tns:ActivityInputType>&lt;statement>&lt;xsl:value-of select=&quot;&amp;quot;INSERT INTO public.customers(id, name, email, account_id) VALUES   (1,'Nevins Nathon','nnathon0@miibeian.gov.cn',16796),(2,'Frederik Crome','fcrome1@virginia.edu',41175),(3,'Abelard Founds','afounds2@smh.com.au',64163),(4,'Lilla Rusling','lrusling3@behance.net',84084),(5,'Ailyn Casham','acasham4@bbc.co.uk',26124)&amp;quot;&quot;/>&lt;/statement>&lt;/tns:ActivityInputType>&lt;/xsl:template>&lt;/xsl:stylesheet>"
-                                    expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"
                                     inputVariable="seed_customers-input"
                                     name="seed_customers"
                                     outputVariable="seed_customers"

@@ -158,6 +158,17 @@
                 </complexContent>
             </complexType>
             <element name="ActivityTimedOutException" type="tns:ActivityTimedOutExceptionType"/>
+            <complexType name="DuplicateKeyExceptionType">
+                <complexContent>
+                    <extension base="tns:ActivityExceptionType">
+                        <sequence>
+                            <element name="duplicateKey" type="string"/>
+                            <element minOccurs="0" name="previousJobID" type="string"/>
+                        </sequence>
+                    </extension>
+                </complexContent>
+            </complexType>
+            <element name="DuplicateKeyException" type="tns:DuplicateKeyExceptionType"/>
         </schema>
         <wsdl:definitions
             targetNamespace="http://xmlns.example.com/20170704020144PLT"
@@ -702,7 +713,7 @@
                                     inputVariable="GetCustomerDetails-input"
                                     name="GetCustomerDetails"
                                     outputVariable="GetCustomerDetails"
-                                    tibex:xpdlId="d06544b9-562c-4b36-ac8d-a3a4bf1ec374"
+                                    tibex:xpdlId="0039a1d3-6b4b-48fb-9f9e-48113b35dbc5"
                                     type="bw.generalactivities.callprocess" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                                     <bpws:sources>
                                     <bpws:source linkName="CallProcessTogetOut"/>

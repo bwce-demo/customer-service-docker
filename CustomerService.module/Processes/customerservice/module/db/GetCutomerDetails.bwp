@@ -160,6 +160,17 @@
                 </complexContent>
             </complexType>
             <element name="ActivityTimedOutException" type="tns:ActivityTimedOutExceptionType"/>
+            <complexType name="DuplicateKeyExceptionType">
+                <complexContent>
+                    <extension base="tns:ActivityExceptionType">
+                        <sequence>
+                            <element name="duplicateKey" type="string"/>
+                            <element minOccurs="0" name="previousJobID" type="string"/>
+                        </sequence>
+                    </extension>
+                </complexContent>
+            </complexType>
+            <element name="DuplicateKeyException" type="tns:DuplicateKeyExceptionType"/>
         </schema>
         <schema
             targetNamespace="http://www.tibco.com/namespaces/tnt/plugins/jdbc+95b2cf5f-d05e-421b-b4cd-15f02b0c65f6+input"
@@ -457,10 +468,8 @@
                 </tibex:receiveEvent>
             </bpws:extensionActivity>
             <bpws:extensionActivity>
-                <tibex:activityExtension
-                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.example.com/namespaces/tns/1499141585825&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;JDBCQuery&quot;/>&lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&lt;tns:CustomerDetails>&lt;tns:id>&lt;xsl:value-of select=&quot;$JDBCQuery/Record[1]/id&quot;/>&lt;/tns:id>&lt;tns:name>&lt;xsl:value-of select=&quot;$JDBCQuery/Record[1]/name&quot;/>&lt;/tns:name>&lt;tns:email>&lt;xsl:value-of select=&quot;$JDBCQuery/Record[1]/email&quot;/>&lt;/tns:email>&lt;tns:account_id>&lt;xsl:value-of select=&quot;$JDBCQuery/Record[1]/account_id&quot;/>&lt;/tns:account_id>&lt;/tns:CustomerDetails>&lt;/xsl:template>&lt;/xsl:stylesheet>"
-                    expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"
-                    inputVariable="End-input" name="End"
+                <tibex:activityExtension inputVariable="End-input"
+                    name="End"
                     tibex:xpdlId="9ee33ca6-5ec5-4e55-be01-b27c10510a98" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                     <bpws:targets>
                         <bpws:target linkName="JDBCQueryToEnd"/>
@@ -486,11 +495,8 @@
                 </tibex:activityExtension>
             </bpws:extensionActivity>
             <bpws:extensionActivity>
-                <tibex:activityExtension
-                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/namespaces/tnt/plugins/jdbc+95b2cf5f-d05e-421b-b4cd-15f02b0c65f6+input&quot; xmlns:tns1=&quot;http://xmlns.example.com/CustomerAccountDetails/parameters&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;Start&quot;/>&lt;xsl:template name=&quot;JDBCQuery-input&quot; match=&quot;/&quot;>&lt;tns:jdbcQueryActivityInput>&lt;id>&lt;xsl:value-of select=&quot;xsd:int($Start/tns1:id)&quot;/>&lt;/id>&lt;/tns:jdbcQueryActivityInput>&lt;/xsl:template>&lt;/xsl:stylesheet>"
-                    expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"
-                    inputVariable="JDBCQuery-input" name="JDBCQuery"
-                    outputVariable="JDBCQuery"
+                <tibex:activityExtension inputVariable="JDBCQuery-input"
+                    name="JDBCQuery" outputVariable="JDBCQuery"
                     tibex:xpdlId="95b2cf5f-d05e-421b-b4cd-15f02b0c65f6" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                     <bpws:targets>
                         <bpws:target linkName="StartToEnd"/>
