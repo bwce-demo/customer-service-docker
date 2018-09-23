@@ -10,6 +10,10 @@
   </parent>
   <artifactId>CustomerService.module</artifactId>
   <packaging>bwmodule</packaging>
+  <properties>
+  	<sonar.projectName>CustomerService</sonar.projectName>
+  	<sonar.sources>.</sonar.sources>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>com.tibco.plugins</groupId>
@@ -17,6 +21,12 @@
       <version>6.1.100</version>
       <scope>provided</scope>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.sonarsource.scanner.maven/sonar-maven-plugin -->
+	<dependency>
+	    <groupId>org.sonarsource.scanner.maven</groupId>
+	    <artifactId>sonar-maven-plugin</artifactId>
+	    <version>3.5.0.1254</version>
+	</dependency>
   </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
